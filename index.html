@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>ZenToys – Anime Action Figures</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎎</text></svg>">
+<style>
+:root{--red:#d70015;--red2:#ff3b30;--bg:#fff;--bg2:#f5f5f7;--tx:#1d1d1f;--mut:#6e6e73;--bd:#e3e3e8;--card:#fff}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#000;--bg2:#161618;--tx:#f5f5f7;--mut:#a1a1a6;--bd:#2c2c2e;--card:#1c1c1e;--red:#ff453a}}
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--tx);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);line-height:1.5}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+.wrap{max-width:1100px;margin:auto;padding:0 16px}
+header{position:sticky;top:0;z-index:9;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--bd)}
+.nav{display:flex;align-items:center;gap:18px;height:56px}
+.logo{font-weight:800;font-size:1.3rem}.logo b{color:var(--red)}
+.nav a.l{color:var(--mut);font-weight:500}.nav a.l:hover,.nav a.on{color:var(--red)}
+.sp{flex:1}
+.cartb{position:relative;font-weight:600;background:var(--red);color:#fff;padding:7px 14px;border-radius:99px}
+.cartb i{font-style:normal;background:#fff;color:var(--red);border-radius:99px;padding:0 7px;margin-left:6px;font-size:.8rem}
+.ann{background:var(--red);color:#fff;text-align:center;padding:8px 12px;font-size:.9rem;font-weight:500}
+.hero{background:linear-gradient(135deg,var(--red),#7a0010);color:#fff;border-radius:22px;padding:44px 28px;margin:20px 0;display:grid;gap:10px}
+.hero h1{font-size:clamp(1.8rem,5vw,3rem);line-height:1.1}
+.hero p{opacity:.9;max-width:520px}
+.btn{display:inline-block;border:0;cursor:pointer;background:var(--red);color:#fff;padding:11px 22px;border-radius:99px;font-weight:600;text-align:center}
+.btn.w{background:#fff;color:var(--red)}.btn.o{background:transparent;border:1.5px solid var(--red);color:var(--red)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.offers{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:12px 0 28px}
+.offer{background:var(--bg2);border:1px solid var(--bd);border-radius:16px;padding:18px}
+.offer h3{color:var(--red)}.offer p{color:var(--mut);font-size:.9rem}
+h2{margin:26px 0 12px;font-size:1.5rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;position:relative}
+.card img,.pimg{width:100%;aspect-ratio:1;object-fit:cover;background:var(--bg2);display:block}
+.card .in{padding:12px;display:grid;gap:4px;flex:1}
+.cat{color:var(--mut);font-size:.75rem;text-transform:uppercase;letter-spacing:.05em}
+.pr{font-weight:700}.pr s{color:var(--mut);font-weight:400;margin-left:6px;font-size:.85rem}
+.tag{position:absolute;top:10px;left:10px;background:var(--red);color:#fff;font-size:.75rem;font-weight:700;padding:3px 9px;border-radius:99px}
+.tag.s{left:auto;right:10px;background:#444}
+.shop{display:grid;grid-template-columns:230px 1fr;gap:20px}
+.filters{background:var(--bg2);border-radius:16px;padding:16px;display:grid;gap:12px;align-self:start;position:sticky;top:70px}
+.filters label{font-size:.8rem;color:var(--mut);display:grid;gap:4px}
+input,select,textarea{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:10px;width:100%;font-size:16px}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--red);border-color:transparent}
+.prod{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:24px 0}
+.prod .pimg{border-radius:20px}
+.big{font-size:1.8rem;font-weight:800}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--bd);border-radius:99px;overflow:hidden}
+.qty button{border:0;background:var(--bg2);width:34px;height:34px;cursor:pointer;font-size:1.1rem}
+.qty span{min-width:34px;text-align:center}
+.row{display:grid;grid-template-columns:80px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--bd)}
+.row img{width:80px;height:80px;border-radius:12px;object-fit:cover;background:var(--bg2)}
+.box{background:var(--bg2);border-radius:16px;padding:18px;display:grid;gap:10px;align-self:start}
+.two{display:grid;grid-template-columns:1.5fr 1fr;gap:22px;margin:20px 0}
+.sum div{display:flex;justify-content:space-between}
+.tot{font-weight:800;font-size:1.15rem;border-top:1px solid var(--bd);padding-top:8px}
+.ok{color:#1a9b3c;font-weight:600}.low{color:#d97706;font-weight:600}.out{color:var(--red);font-weight:600}
+.msg{color:var(--red);font-size:.9rem}
+footer{margin-top:50px;border-top:1px solid var(--bd);padding:24px 0;color:var(--mut);font-size:.9rem;text-align:center}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:10px 20px;border-radius:99px;z-index:20;font-weight:500}
+@media(max-width:760px){.shop,.prod,.two{grid-template-columns:1fr}.filters{position:static}.nav{gap:12px}.hero{padding:30px 20px}}
+</style>
+</head>
+<body>
+<div class="ann" id="ann"></div>
+<header><div class="wrap nav">
+<a class="logo" href="#/">Zen<b>Toys</b></a>
+<a class="l" href="#/shop">Shop</a>
+<span class="sp"></span>
+<a class="cartb" href="#/cart">🛒 Cart<i id="cc">0</i></a>
+</div></header>
+<main class="wrap" id="app"></main>
+<footer><div class="wrap">© 2026 ZenToys · Anime action figures delivered across Bangladesh · Cash on Delivery available<br>Demo prototype – figures shown are illustrative.</div></footer>
+
+<script>
+/* ===== CONFIG ===== */
+const OWNER_EMAIL="mdin8745@gmail.com";           // order notifications go here (via FormSubmit)
+const FREE_SHIP=5000, SHIP_DHAKA=60, SHIP_OUT=120;
+const COUPON={code:"ZEN10",pct:10};
+const ANN=["🔥 Autumn Sale: up to 25% off selected figures","🚚 Free delivery on orders over ৳5,000","🎁 Use code ZEN10 for extra 10% off"];
+
+/* ===== PRODUCTS ===== (replace img with your own photo URLs or files like images/p1.jpg) */
+const IMG=q=>`https://source.unsplash.com/600x600/?${q}`;
+const P=[
+{id:1,name:"Shadow Ninja Figure",cat:"Ninja",price:4200,old:5200,stock:8,feat:1,emoji:"🥷",img:IMG("action,figure,toy"),d:"1/8 scale PVC ninja figure with dynamic pose, removable scarf and kunai accessories. Approx. 22 cm tall."},
+{id:2,name:"Straw Captain Pirate",cat:"Adventure",price:3800,old:0,stock:15,feat:1,emoji:"🏴‍☠️",img:IMG("anime,figure"),d:"Cheerful pirate hero with interchangeable faces and stretchy-arm effect parts. Perfect desk companion."},
+{id:3,name:"Crimson Blade Slayer",cat:"Fantasy",price:5600,old:6900,stock:3,feat:1,emoji:"⚔️",img:IMG("samurai,toy"),d:"Premium sculpt with translucent flame effects and a detachable katana. Collector edition with display base."},
+{id:4,name:"Magic Academy Girl",cat:"Fantasy",price:3200,old:0,stock:20,feat:0,emoji:"🧙‍♀️",img:IMG("anime,girl,figurine"),d:"Cute chibi-style sorceress with staff and floating spell-circle stand. 15 cm."},
+{id:5,name:"Mecha Titan MK-II",cat:"Mecha",price:7900,old:9500,stock:5,feat:1,emoji:"🤖",img:IMG("robot,toy,collectible"),d:"Fully articulated die-cast mecha with 30+ points of articulation, swappable weapons and LED eyes."},
+{id:6,name:"Spirit Fox Maiden",cat:"Fantasy",price:4500,old:0,stock:0,feat:0,emoji:"🦊",img:IMG("fox,figurine"),d:"Elegant kimono-clad fox spirit with nine flowing tails. Currently sold out – check back soon!"},
+{id:7,name:"Street Fighter Ace",cat:"Action",price:2900,old:3500,stock:25,feat:0,emoji:"🥊",img:IMG("action,figure,fighter"),d:"Budget-friendly articulated fighter with 3 pairs of hands and an impact-effect accessory."},
+{id:8,name:"Sky Pilot Hero",cat:"Adventure",price:3400,old:0,stock:12,feat:0,emoji:"🧑‍✈️",img:IMG("hero,toy,figure"),d:"Retro aviator hero with goggles and a mini propeller plane. 17 cm PVC."},
+{id:9,name:"Dragon Knight Deluxe",cat:"Fantasy",price:8800,old:11000,stock:2,feat:1,emoji:"🐉",img:IMG("dragon,statue,toy"),d:"Large 30 cm statue-grade figure with dragon companion and hand-painted armor detail."},
+{id:10,name:"Cyber Racer Girl",cat:"Mecha",price:4100,old:0,stock:9,feat:0,emoji:"🏍️",img:IMG("cyberpunk,figure"),d:"Neon-accented cyber racer with hoverbike. Glow-in-the-dark details."}
+];
+const $=s=>document.querySelector(s), tk=n=>"৳"+n.toLocaleString("en-US");
+const fb=p=>`data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23d70015'/><text x='50' y='64' font-size='46' text-anchor='middle'>${p.emoji}</text></svg>`)}`;
+const im=p=>`<img src="${p.img}" alt="${p.name}" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='${fb(p).replace(/'/g,"%27")}'">`;
+
+/* ===== STORAGE ===== */
+const ls={get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let cart=ls.get("zt_cart",[]);           // [{id,q}]
+let sold=ls.get("zt_sold",{});           // demo stock deduction
+const stock=p=>Math.max(0,p.stock-(sold[p.id]||0));
+const save=()=>{ls.set("zt_cart",cart);$("#cc").textContent=cart.reduce((a,c)=>a+c.q,0)};
+const find=id=>P.find(p=>p.id==id);
+function toast(t){const e=document.createElement("div");e.className="toast";e.textContent=t;document.body.append(e);setTimeout(()=>e.remove(),1800)}
+function add(id,q=1){const p=find(id),c=cart.find(x=>x.id==id),n=(c?c.q:0)+q;
+ if(n>stock(p))return toast("Only "+stock(p)+" in stock");
+ c?c.q=n:cart.push({id:+id,q});save();toast("Added to cart ✓");if(location.hash.startsWith("#/cart"))route()}
+function setq(id,q){const c=cart.find(x=>x.id==id);if(q<=0)cart=cart.filter(x=>x.id!=id);else if(q<=stock(find(id)))c.q=q;else toast("Max stock reached");save();route()}
+const sub=()=>cart.reduce((a,c)=>a+find(c.id).price*c.q,0);
+
+/* ===== VIEWS ===== */
+const card=p=>`<div class="card">${p.old?`<span class="tag">-${Math.round((1-p.price/p.old)*100)}%</span>`:""}${stock(p)?"":`<span class="tag s">Sold out</span>`}
+<a href="#/product/${p.id}">${im(p)}</a><div class="in"><span class="cat">${p.cat}</span><a href="#/product/${p.id}"><b>${p.name}</b></a>
+<div class="pr">${tk(p.price)}${p.old?`<s>${tk(p.old)}</s>`:""}</div></div>
+<div style="padding:0 12px 12px"><button class="btn" style="width:100%" ${stock(p)?"":"disabled"} onclick="add(${p.id})">${stock(p)?"Add to cart":"Out of stock"}</button></div></div>`;
+
+function home(){return `<section class="hero"><span>NEW SEASON DROP</span><h1>Bring your favourite anime to life.</h1><p>Premium action figures, delivered across Bangladesh with Cash on Delivery.</p><div><a class="btn w" href="#/shop">Shop now</a></div></section>
+<div class="offers"><div class="offer"><h3>🔥 Autumn Sale</h3><p>Up to 25% off selected figures – limited stock!</p></div>
+<div class="offer"><h3>🎁 Code ${COUPON.code}</h3><p>Extra ${COUPON.pct}% off at checkout on any order.</p></div>
+<div class="offer"><h3>🚚 Free Delivery</h3><p>On orders over ${tk(FREE_SHIP)} anywhere in Bangladesh.</p></div></div>
+<h2>Featured figures</h2><div class="grid">${P.filter(p=>p.feat).map(card).join("")}</div>
+<h2>On discount</h2><div class="grid">${P.filter(p=>p.old).slice(0,4).map(card).join("")}</div>`}
+
+let F={q:"",cat:"All",max:10000,sort:"feat",inS:false};
+function shop(){const cats=["All",...new Set(P.map(p=>p.cat))];
+ return `<h2>Shop</h2><div class="shop"><aside class="filters">
+<label>Search<input id="fq" value="${F.q}" placeholder="Find a figure…"></label>
+<label>Category<select id="fc">${cats.map(c=>`<option ${c==F.cat?"selected":""}>${c}</option>`).join("")}</select></label>
+<label>Max price: <b id="fv">${tk(F.max)}</b><input type="range" id="fm" min="1000" max="10000" step="500" value="${F.max}"></label>
+<label>Sort<select id="fs"><option value="feat">Featured</option><option value="lo">Price: low → high</option><option value="hi">Price: high → low</option><option value="az">Name A–Z</option></select></label>
+<label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="fi" style="width:auto" ${F.inS?"checked":""}>In stock only</label></aside>
+<div><div class="grid" id="pg"></div></div></div>`}
+function list(){let l=P.filter(p=>(F.cat=="All"||p.cat==F.cat)&&p.price<=F.max&&p.name.toLowerCase().includes(F.q.toLowerCase())&&(!F.inS||stock(p)));
+ const s={lo:(a,b)=>a.price-b.price,hi:(a,b)=>b.price-a.price,az:(a,b)=>a.name.localeCompare(b.name),feat:(a,b)=>b.feat-a.feat};l.sort(s[F.sort]);
+ $("#pg").innerHTML=l.length?l.map(card).join(""):"<p>No figures match your filters.</p>"}
+function bindShop(){const u=()=>{F.q=$("#fq").value;F.cat=$("#fc").value;F.max=+$("#fm").value;F.sort=$("#fs").value;F.inS=$("#fi").checked;$("#fv").textContent=tk(F.max);list()};
+ ["fq","fc","fm","fs","fi"].forEach(i=>$("#"+i).addEventListener("input",u));$("#fs").value=F.sort;list()}
+
+function product(id){const p=find(id);if(!p)return"<p>Product not found. <a href='#/shop'>Back to shop</a></p>";const s=stock(p);
+ return `<p style="margin-top:16px"><a href="#/shop" style="color:var(--red)">← Back to shop</a></p><div class="prod">${im(p).replace("<img",'<img class="pimg"')}
+<div style="display:grid;gap:12px;align-content:start"><span class="cat">${p.cat}</span><h1>${p.name}</h1>
+<div class="big">${tk(p.price)} ${p.old?`<s style="font-size:1rem;color:var(--mut);font-weight:400">${tk(p.old)}</s>`:""}</div>
+<div>${s>5?`<span class="ok">● In stock (${s} available)</span>`:s>0?`<span class="low">● Only ${s} left – order soon!</span>`:`<span class="out">● Out of stock</span>`}</div>
+<p>${p.d}</p>
+<div class="qty"><button onclick="pq(-1)">−</button><span id="pqv">1</span><button onclick="pq(1)">+</button></div>
+<button class="btn" ${s?"":"disabled"} onclick="add(${p.id},+$('#pqv').textContent)">Add to cart</button>
+<small style="color:var(--mut)">🚚 Delivery 2–4 days · 💵 Cash on Delivery · 🔄 Authentic figures</small></div></div>
+<h2>You may also like</h2><div class="grid">${P.filter(x=>x.cat==p.cat&&x.id!=p.id||x.feat&&x.id!=p.id).slice(0,4).map(card).join("")}</div>`}
+function pq(d){const e=$("#pqv"),id=+location.hash.split("/")[2],n=+e.textContent+d;if(n>=1&&n<=Math.max(1,stock(find(id))))e.textContent=n}
+
+function cartV(){if(!cart.length)return `<h2>Your cart</h2><p>Your cart is empty.</p><p style="margin-top:12px"><a class="btn" href="#/shop">Browse figures</a></p>`;
+ const s=sub();return `<h2>Your cart</h2><div class="two"><div>${cart.map(c=>{const p=find(c.id);return `<div class="row">${im(p)}<div><a href="#/product/${p.id}"><b>${p.name}</b></a><div class="pr">${tk(p.price)}</div>
+<div class="qty"><button onclick="setq(${p.id},${c.q-1})">−</button><span>${c.q}</span><button onclick="setq(${p.id},${c.q+1})">+</button></div></div>
+<div style="text-align:right"><b>${tk(p.price*c.q)}</b><br><button onclick="setq(${p.id},0)" style="border:0;background:none;color:var(--red);cursor:pointer">Remove</button></div></div>`}).join("")}</div>
+<div class="box sum"><div><span>Subtotal</span><b>${tk(s)}</b></div><small style="color:var(--mut)">Delivery calculated at checkout</small><a class="btn" href="#/checkout">Checkout</a></div></div>`}
+
+const DIV=["Dhaka","Chattogram","Rajshahi","Khulna","Barishal","Sylhet","Rangpur","Mymensingh"];
+let cp=false;
+function ship(d){const s=sub();return s>=FREE_SHIP?0:d=="Dhaka"?SHIP_DHAKA:SHIP_OUT}
+function checkout(){if(!cart.length)return location.hash="#/cart",""; 
+ return `<h2>Checkout</h2><div class="two"><form class="box" id="cf" novalidate>
+<label>Full name<input name="name" required autocomplete="name"></label>
+<label>Phone (BD)<input name="phone" required inputmode="tel" autocomplete="tel" placeholder="01XXXXXXXXX"></label>
+<label>Email (optional)<input name="email" type="email" autocomplete="email"></label>
+<label>Division<select name="division" id="dv">${DIV.map(d=>`<option>${d}</option>`).join("")}</select></label>
+<label>District / Thana<input name="district" required></label>
+<label>Full address<textarea name="address" rows="3" required placeholder="House, road, area"></textarea></label>
+<label>Order note (optional)<input name="note"></label>
+<label style="display:flex;gap:8px;align-items:center"><input type="radio" checked style="width:auto"> 💵 Cash on Delivery (pay when you receive)</label>
+<input name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+<div class="msg" id="er"></div><button class="btn" id="pb">Place order</button></form>
+<div class="box sum" id="os"></div></div>`}
+function osum(){const d=$("#dv")?.value||"Dhaka",s=sub(),dis=cp?Math.round(s*COUPON.pct/100):0,sh=ship(d);
+ $("#os").innerHTML=`<b>Order summary</b>${cart.map(c=>`<div><span>${find(c.id).name} × ${c.q}</span><span>${tk(find(c.id).price*c.q)}</span></div>`).join("")}
+<div><span>Subtotal</span><span>${tk(s)}</span></div>${dis?`<div class="ok"><span>Discount ${COUPON.code}</span><span>−${tk(dis)}</span></div>`:""}
+<div><span>Delivery (${d})</span><span>${sh?tk(sh):"Free"}</span></div><div class="tot"><span>Total (COD)</span><span>${tk(s-dis+sh)}</span></div>
+<div style="display:flex;gap:6px"><input id="cpi" placeholder="Coupon code"><button type="button" class="btn o" id="cpb">Apply</button></div>`;
+ $("#cpb").onclick=()=>{if($("#cpi").value.trim().toUpperCase()==COUPON.code){cp=true;toast("Coupon applied");osum()}else toast("Invalid coupon")};
+ return s-dis+sh}
+function bindCheckout(){osum();$("#dv").onchange=osum;
+ $("#cf").onsubmit=async e=>{e.preventDefault();const f=e.target,v=Object.fromEntries(new FormData(f)),er=$("#er");
+  if(v._honey)return;
+  if(!v.name.trim()||!v.district.trim()||!v.address.trim())return er.textContent="Please fill all required fields.";
+  const ph=v.phone.replace(/[\s-]/g,"").replace(/^\+?88/,"");if(!/^01[3-9]\d{8}$/.test(ph))return er.textContent="Enter a valid Bangladeshi mobile number (01XXXXXXXXX).";
+  for(const c of cart)if(c.q>stock(find(c.id)))return er.textContent="Stock changed for "+find(c.id).name+". Please update your cart.";
+  er.textContent="";const total=osum(),oid="ZT"+Date.now().toString().slice(-8),b=$("#pb");b.disabled=true;b.textContent="Placing order…";
+  const items=cart.map(c=>`${find(c.id).name} x${c.q} = ${tk(find(c.id).price*c.q)}`).join("\n");
+  const body={_subject:`New ZenToys order ${oid} – ${tk(total)}`,_template:"table",_captcha:"false","Order ID":oid,Customer:v.name,Phone:ph,Email:v.email||"-",
+   Address:`${v.address}, ${v.district}, ${v.division}`,Items:items,Coupon:cp?COUPON.code:"none",Total:`${tk(total)} (Cash on Delivery)`,Note:v.note||"-",Placed:new Date().toLocaleString()};
+  if(v.email)body._replyto=v.email;
+  try{const r=await fetch("https://formsubmit.co/ajax/"+OWNER_EMAIL,{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(body)});
+   const j=await r.json();if(!r.ok||j.success==="false")throw 0;
+   cart.forEach(c=>sold[c.id]=(sold[c.id]||0)+c.q);ls.set("zt_sold",sold);
+   ls.set("zt_last",{oid,total,name:v.name});cart=[];cp=false;save();location.hash="#/success"}
+  catch(x){er.textContent="Could not send the order. Check your internet and try again.";b.disabled=false;b.textContent="Place order"}}}
+function success(){const o=ls.get("zt_last");return `<div style="text-align:center;padding:60px 0"><div style="font-size:4rem">🎉</div><h1>Order placed!</h1>
+<p style="margin:10px 0">${o?`Thank you ${o.name}. Your order <b>${o.oid}</b> (${tk(o.total)}, Cash on Delivery) has been received.`:""}<br>We'll call you shortly to confirm delivery.</p><a class="btn" href="#/shop">Continue shopping</a></div>`}
+
+/* ===== ROUTER ===== */
+function route(){const h=location.hash||"#/",[,r,a]=h.split("/"),app=$("#app");
+ app.innerHTML=r=="shop"?shop():r=="product"?product(a):r=="cart"?cartV():r=="checkout"?checkout():r=="success"?success():home();
+ if(r=="shop")bindShop();if(r=="checkout"&&cart.length)bindCheckout();window.scrollTo(0,0)}
+addEventListener("hashchange",route);addEventListener("storage",e=>{if(e.key=="zt_cart"){cart=ls.get("zt_cart",[]);save()}});
+let ai=0;const an=()=>{$("#ann").textContent=ANN[ai++%ANN.length]};an();setInterval(an,4000);
+save();route();
+</script>
+</body>
+</html>
