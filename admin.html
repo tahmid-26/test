@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark"><meta name="robots" content="noindex">
+<title>ZenToys Admin</title>
+<style>
+:root{--red:#d70015;--bg:#f5f5f7;--card:#fff;--tx:#1d1d1f;--mut:#6e6e73;--bd:#e3e3e8}
+@media(prefers-color-scheme:dark){:root{--red:#ff453a;--bg:#000;--card:#1c1c1e;--tx:#f5f5f7;--mut:#a1a1a6;--bd:#2c2c2e}}
+*{box-sizing:border-box;margin:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--tx);padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+header{position:sticky;top:0;z-index:5;background:var(--card);border-bottom:1px solid var(--bd);padding:10px 16px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+header b{font-size:1.1rem;flex:1}header b i{color:var(--red);font-style:normal}
+main{max-width:900px;margin:auto;padding:16px;display:grid;gap:14px}
+section{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:16px;display:grid;gap:10px}
+h2{font-size:1.1rem}small{color:var(--mut)}
+label{display:grid;gap:3px;font-size:.78rem;color:var(--mut);flex:1;min-width:140px}
+input,textarea,select{font:inherit;font-size:16px;color:inherit;background:var(--bg);border:1px solid var(--bd);border-radius:10px;padding:9px;width:100%}
+.r{display:flex;gap:8px;flex-wrap:wrap;align-items:end}
+button{font:inherit;font-weight:600;border:1.5px solid var(--red);background:transparent;color:var(--red);border-radius:99px;padding:8px 16px;cursor:pointer}
+button.p{background:var(--red);color:#fff}button:disabled{opacity:.5}
+.x{padding:6px 12px}
+.pc{border:1px solid var(--bd);border-radius:14px;padding:12px;display:grid;gap:8px}
+.pc img{width:90px;height:90px;object-fit:cover;border-radius:12px;background:var(--bg)}
+.ck{display:flex;flex-direction:row;align-items:center;gap:6px;color:var(--tx);flex:0 0 auto}.ck input{width:auto}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:10px 18px;border-radius:99px;z-index:9}
+</style></head><body>
+<header><b>Zen<i>Toys</i> Admin</b><span id="st"><small>Not connected</small></span>
+<button onclick="load()">Reload</button><button class="p" id="pub" onclick="publish()">Publish changes</button></header>
+<main>
+<section><h2>🔑 GitHub connection</h2>
+<small>Your changes are saved into your repo (data.json + images/). Create a token at GitHub → Settings → Developer settings → Fine-grained tokens → choose ONLY your shop repo → Permissions: <b>Contents: Read and write</b>. The token is stored only in this browser. Use your own device and never share it.</small>
+<div class="r"><label>Repo (username/repo)<input id="repo" placeholder="myname/zentoys"></label><label>Branch<input id="br" value="main"></label></div>
+<label>Token<input id="tok" type="password" autocomplete="off" placeholder="github_pat_…"></label>
+<div><button class="p" onclick="conn()">Save &amp; load shop data</button></div></section>
+<div id="ed"></div>
+</main>
+<script>
+const $=s=>document.querySelector(s),esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let D,sha,pend={},dirty=0,cfg={};try{cfg=JSON.parse(localStorage.zt_gh||"{}")}catch(e){}
+$("#repo").value=cfg.repo||"";$("#br").value=cfg.br||"main";$("#tok").value=cfg.tok||"";
+function toast(t){const e=document.createElement("div");e.className="toast";e.textContent=t;document.body.append(e);setTimeout(()=>e.remove(),2800)}
+const api=(p,o)=>fetch(`https://api.github.com/repos/${cfg.repo}/contents/${p}`+(o?"":`?ref=${cfg.br}&t=${Date.now()}`),{...o,headers:{Authorization:"Bearer "+cfg.tok,Accept:"application/vnd.github+json"}});
+const b64=s=>btoa(unescape(encodeURIComponent(s)));
+function conn(){cfg={repo:$("#repo").value.trim(),br:$("#br").value.trim()||"main",tok:$("#tok").value.trim()};localStorage.zt_gh=JSON.stringify(cfg);load()}
+async function load(){if(!cfg.repo||!cfg.tok)return toast("Enter repo and token first");
+ try{const r=await api("data.json");if(!r.ok)throw r.status;const j=await r.json();sha=j.sha;
+  D=JSON.parse(decodeURIComponent(escape(atob(j.content.replace(/\n/g,"")))));pend={};dirty=0;$("#st").innerHTML="<small>✅ Connected</small>";render()}
+ catch(e){toast("Could not load data.json ("+e+"). Check repo, branch, token & that data.json is uploaded.")}}
+const get=(p,o=D)=>p.split(".").reduce((a,k)=>a?.[k],o);
+function set(p,v){const k=p.split("."),l=k.pop();get(k.join("."))&&(get(k.join("."))[l]=v)}
+const inp=(p,l,n)=>`<label>${l}<input data-p="${p}" ${n?'data-n=1 type=number step=any':''} value="${esc(get(p))}"></label>`;
+const pv=p=>pend[p.img]||p.img||"data:image/svg+xml,"+encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='#d70015'/><text x='50' y='64' font-size='46' text-anchor='middle'>${p.emoji||"🎎"}</text></svg>`);
+function prod(p,i){const k="products."+i+".";return `<div class="pc"><div class="r"><img src="${esc(pv(p))}" alt="">
+<div style="flex:1;min-width:200px;display:grid;gap:8px">${inp(k+"name","Name")}<div class="r">${inp(k+"price","Price ৳",1)}${inp(k+"old","Old price ৳ (0 = no discount)",1)}${inp(k+"stock","Stock",1)}</div></div></div>
+<div class="r">${inp(k+"cat","Category")}${inp(k+"emoji","Fallback emoji")}<label class="ck"><input type="checkbox" data-b data-p="${k}feat" ${p.feat?"checked":""}> Featured on home</label></div>
+<label>Description<textarea data-p="${k}d" rows="3">${esc(p.d)}</textarea></label>
+<div class="r">${inp(k+"img","Photo URL or path")}<label>Or upload photo<input type="file" accept="image/*" onchange="up(${i},this.files[0])"></label></div>
+<div><button class="x" onclick="if(confirm('Delete ${esc(p.name).replace(/'/g,"")}?')){D.products.splice(${i},1);dirty=1;render()}">🗑 Delete product</button></div></div>`}
+function render(){if(!D)return;$("#ed").innerHTML=`<div style="display:grid;gap:14px">
+<section><h2>📣 Top notification bar</h2><small>One message per line. They rotate every few seconds.</small><textarea data-l rows="3">${esc(D.ann.join("\n"))}</textarea></section>
+<section><h2>🏠 Hero banner</h2>${inp("hero.tag","Small label")}${inp("hero.title","Headline")}${inp("hero.text","Text")}${inp("hero.btn","Button text")}</section>
+<section><h2>🎁 Offer cards (home page)</h2>${D.offers.map((o,i)=>`<div class="r">${inp("offers."+i+".t","Title")}${inp("offers."+i+".p","Text")}<button class="x" onclick="D.offers.splice(${i},1);dirty=1;render()">✕</button></div>`).join("")}
+<div><button onclick="D.offers.push({t:'New offer',p:''});dirty=1;render()">+ Add offer</button></div></section>
+<section><h2>🏷 Coupon &amp; delivery</h2><div class="r">${inp("coupon.code","Coupon code")}${inp("coupon.pct","Discount %",1)}</div>
+<div class="r">${inp("ship.free","Free delivery over ৳",1)}${inp("ship.dhaka","Dhaka delivery ৳",1)}${inp("ship.out","Outside Dhaka ৳",1)}</div></section>
+<section><h2>🧸 Products (${D.products.length})</h2><div><button class="p" onclick="addP()">+ Add product</button></div>${D.products.map(prod).join("")}</section></div>`}
+addEventListener("input",e=>{const t=e.target;dirty=1;if(t.hasAttribute("data-l"))D.ann=t.value.split("\n").map(s=>s.trim()).filter(Boolean);
+ else if(t.dataset.p)set(t.dataset.p,t.hasAttribute("data-b")?+t.checked:t.dataset.n?+t.value:t.value)});
+function addP(){const id=Math.max(0,...D.products.map(p=>p.id))+1;D.products.unshift({id,name:"New figure",cat:"Action",price:1000,old:0,stock:10,feat:0,emoji:"🎎",img:"",d:"Describe this figure…"});dirty=1;render()}
+function up(i,f){if(!f)return;const im=new Image;im.onload=()=>{const s=Math.min(1,900/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*s;c.height=im.height*s;
+ c.getContext("2d").drawImage(im,0,0,c.width,c.height);const p=`images/p${D.products[i].id}-${Date.now()}.jpg`;pend[p]=c.toDataURL("image/jpeg",.82);D.products[i].img=p;dirty=1;render()};im.src=URL.createObjectURL(f)}
+async function put(path,content,s,msg){const r=await api(path,{method:"PUT",body:JSON.stringify({message:msg,content,branch:cfg.br,...(s?{sha:s}:{})})});if(!r.ok)throw new Error(path+" failed ("+r.status+")");return r.json()}
+async function publish(){if(!D)return toast("Connect first");const b=$("#pub");b.disabled=true;b.textContent="Publishing…";
+ try{for(const p of Object.keys(pend)){if(!Object.values(D.products).some(x=>x.img==p))continue;await put(p,pend[p].split(",")[1],0,"Add product photo")}
+  const r=await api("data.json");sha=(await r.json()).sha;   // refresh sha to avoid conflicts
+  const j=await put("data.json",b64(JSON.stringify(D,null,1)),sha,"Update shop from admin");sha=j.content.sha;pend={};dirty=0;
+  toast("✅ Published! Live on your site in about 1 minute.")}
+ catch(e){toast("❌ "+e.message)}b.disabled=false;b.textContent="Publish changes"}
+addEventListener("beforeunload",e=>{if(dirty){e.preventDefault();e.returnValue=""}});
+if(cfg.repo&&cfg.tok)load();
+</script></body></html>

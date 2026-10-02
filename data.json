@@ -1,0 +1,158 @@
+{
+ "ann": [
+  "🔥 Autumn Sale: up to 25% off selected figures",
+  "🚚 Free delivery on orders over ৳5,000",
+  "🎁 Use code ZEN10 for extra 10% off"
+ ],
+ "hero": {
+  "tag": "NEW SEASON DROP",
+  "title": "Bring your favourite anime to life.",
+  "text": "Premium action figures, delivered across Bangladesh with Cash on Delivery.",
+  "btn": "Shop now"
+ },
+ "offers": [
+  {
+   "t": "🔥 Autumn Sale",
+   "p": "Up to 25% off selected figures – limited stock!"
+  },
+  {
+   "t": "🎁 Code ZEN10",
+   "p": "Extra 10% off at checkout on any order."
+  },
+  {
+   "t": "🚚 Free Delivery",
+   "p": "On orders over ৳5,000 anywhere in Bangladesh."
+  }
+ ],
+ "coupon": {
+  "code": "ZEN10",
+  "pct": 10
+ },
+ "ship": {
+  "free": 5000,
+  "dhaka": 60,
+  "out": 120
+ },
+ "products": [
+  {
+   "id": 1,
+   "name": "Shadow Ninja Figure",
+   "cat": "Ninja",
+   "price": 4200,
+   "old": 5200,
+   "stock": 8,
+   "feat": 1,
+   "emoji": "🥷",
+   "img": "",
+   "d": "1/8 scale PVC ninja figure with dynamic pose, removable scarf and kunai accessories. Approx. 22 cm tall."
+  },
+  {
+   "id": 2,
+   "name": "Straw Captain Pirate",
+   "cat": "Adventure",
+   "price": 3800,
+   "old": 0,
+   "stock": 15,
+   "feat": 1,
+   "emoji": "🏴‍☠️",
+   "img": "",
+   "d": "Cheerful pirate hero with interchangeable faces and stretchy-arm effect parts. Perfect desk companion."
+  },
+  {
+   "id": 3,
+   "name": "Crimson Blade Slayer",
+   "cat": "Fantasy",
+   "price": 5600,
+   "old": 6900,
+   "stock": 3,
+   "feat": 1,
+   "emoji": "⚔️",
+   "img": "",
+   "d": "Premium sculpt with translucent flame effects and a detachable katana. Collector edition with display base."
+  },
+  {
+   "id": 4,
+   "name": "Magic Academy Girl",
+   "cat": "Fantasy",
+   "price": 3200,
+   "old": 0,
+   "stock": 20,
+   "feat": 0,
+   "emoji": "🧙‍♀️",
+   "img": "",
+   "d": "Cute chibi-style sorceress with staff and floating spell-circle stand. 15 cm."
+  },
+  {
+   "id": 5,
+   "name": "Mecha Titan MK-II",
+   "cat": "Mecha",
+   "price": 7900,
+   "old": 9500,
+   "stock": 5,
+   "feat": 1,
+   "emoji": "🤖",
+   "img": "",
+   "d": "Fully articulated die-cast mecha with 30+ points of articulation, swappable weapons and LED eyes."
+  },
+  {
+   "id": 6,
+   "name": "Spirit Fox Maiden",
+   "cat": "Fantasy",
+   "price": 4500,
+   "old": 0,
+   "stock": 0,
+   "feat": 0,
+   "emoji": "🦊",
+   "img": "",
+   "d": "Elegant kimono-clad fox spirit with nine flowing tails. Currently sold out – check back soon!"
+  },
+  {
+   "id": 7,
+   "name": "Street Fighter Ace",
+   "cat": "Action",
+   "price": 2900,
+   "old": 3500,
+   "stock": 25,
+   "feat": 0,
+   "emoji": "🥊",
+   "img": "",
+   "d": "Budget-friendly articulated fighter with 3 pairs of hands and an impact-effect accessory."
+  },
+  {
+   "id": 8,
+   "name": "Sky Pilot Hero",
+   "cat": "Adventure",
+   "price": 3400,
+   "old": 0,
+   "stock": 12,
+   "feat": 0,
+   "emoji": "🧑‍✈️",
+   "img": "",
+   "d": "Retro aviator hero with goggles and a mini propeller plane. 17 cm PVC."
+  },
+  {
+   "id": 9,
+   "name": "Dragon Knight Deluxe",
+   "cat": "Fantasy",
+   "price": 8800,
+   "old": 11000,
+   "stock": 2,
+   "feat": 1,
+   "emoji": "🐉",
+   "img": "",
+   "d": "Large 30 cm statue-grade figure with dragon companion and hand-painted armor detail."
+  },
+  {
+   "id": 10,
+   "name": "Cyber Racer Girl",
+   "cat": "Mecha",
+   "price": 4100,
+   "old": 0,
+   "stock": 9,
+   "feat": 0,
+   "emoji": "🏍️",
+   "img": "",
+   "d": "Neon-accented cyber racer with hoverbike. Glow-in-the-dark details."
+  }
+ ]
+}
